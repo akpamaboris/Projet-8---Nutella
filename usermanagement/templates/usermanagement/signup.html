@@ -12,10 +12,11 @@
         text-center
       "
     >
-      <h1>Se connecter</h1>
-      <form method="post">
-        {{ form.as_p }} {% csrf_token %}
-        <input type="submit" value="Log In" />
+      <h1>S'enregistrer</h1>
+
+      <form method="POST">
+        {% csrf_token %} {{form.as_p}}
+        <button type="submit">Signup</button>
       </form>
     </div>
   </div>
