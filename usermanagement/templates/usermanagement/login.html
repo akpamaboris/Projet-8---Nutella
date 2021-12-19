@@ -1,6 +1,12 @@
-{% extends 'pages/base.html' %}
+{% extends 'pages/base.html' %} {% block content %}
+<header class="masthead">
 
-{% block content %}
-
-
+<div class="container px-4 px-lg-5 h-100">
+  <h1>Se connecter</h1>
+  <form method="post">
+    {{ form.as_p }} {% csrf_token %}
+    <input type="submit" value="Log In" />
+  </form>
+</div>
+</div>
 {% endblock %}
