@@ -68,24 +68,33 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ms-auto my-2 my-lg-0">
+            {% if user.is_authenticated %}
             <li class="nav-item">
               <a class="nav-link" href="#about">Chercher</a>
             </li>
+            {% endif %}
+
+            {% if user.is_authenticated %}
             <li class="nav-item">
               <a class="nav-link" href="#services">Mon Compte</a>
             </li>
+            {% endif %}
+            {% if user.is_authenticated %}
             <li class="nav-item">
               <a class="nav-link" href="#portfolio">Mes aliments</a>
             </li>
+            {% endif %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'login' %}">Connexion</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'signup' %}"">S'enregistrer</a>
             </li>
+            {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" href="#contact">Déconnexion</a>
+              <a class="nav-link" href="{% url 'logout' %}">Déconnexion</a>
             </li>
+            {% endif %}
           </ul>
         </div>
       </div>
