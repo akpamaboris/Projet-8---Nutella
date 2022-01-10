@@ -1,9 +1,31 @@
 {% extends "pages/base.html" %} {% block content %}
 
-<header>
+<header class="mt-5">
   <h1>OK</h1>
-  {% for product in products %}
+  {% if products|length > 1 %} {% for product in products %}
+  <div class="card" style="width: 18rem">
+    <img class="card-img-top" src="..." alt="Card image cap" />
+    <div class="card-body">
+      <h5 class="card-title">{{product.name_of_product}}</h5>
+      <p class="card-text">{{product.name_of_product}}</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+  {% endfor %} {% elif product|length_is:"1" %}
+
   <h2>{{product.name_of_product}}</h2>
-  {% endfor %}
+  <div class="card" style="width: 18rem">
+    <img class="card-img-top" src="..." alt="Card image cap" />
+    <div class="card-body">
+      <h5 class="card-title">{{product.name_of_product}}</h5>
+      <p class="card-text">{{product.name_of_product}}</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+  {% else %}
+  <h1>I am sorry to let you hear ....</h1>
+  <h2>No products found</h2>
+
+  {% endif %}
 </header>
 {% endblock %}
