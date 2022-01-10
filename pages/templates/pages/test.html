@@ -1,0 +1,9 @@
+{% extends "pages/base.html" %} {% block content %}
+
+<header>
+  <h1>OK</h1>
+  {% for product in products %}
+  <h2>{{product.name_of_product}}</h2>
+  {% endfor %}
+</header>
+{% endblock %}

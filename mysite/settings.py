@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # installed apps
     'pages',
-    'usermanagement'
+    'usermanagement',
+    'food'
 ]
 
 MIDDLEWARE = [

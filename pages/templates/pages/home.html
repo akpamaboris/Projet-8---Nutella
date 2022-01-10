@@ -23,12 +23,13 @@
           <hr class="divider" />
         </div>
         <div class="col-lg-8 align-self-baseline">
-          <form class="form-inline container">
+          <form class="form-inline container" action="{% url 'search' %}">
             <div class="row">
               <input
                 type="text"
                 class=" col-9"
                 id="chercherproduit"
+                name="searchProduct"
                 placeholder="chercher un produit"
               />
                 <button type="submit" class="col">
@@ -85,24 +86,7 @@
             <h3 class="h4 mb-2">mail@mail.fr</h3>
           </div>
         </div>
-        <!-- <div class="col-lg-3 col-md-6 text-center">
-          <div class="mt-5">
-            <div class="mb-2"><i class="bi-globe fs-1 text-primary"></i></div>
-            <h3 class="h4 mb-2">Ready to Publish</h3>
-            <p class="text-muted mb-0">
-              You can use this design as is, or you can make changes!
-            </p>
-          </div>
-        </div> -->
-        <!-- <div class="col-lg-3 col-md-6 text-center">
-          <div class="mt-5">
-            <div class="mb-2"><i class="bi-heart fs-1 text-primary"></i></div>
-            <h3 class="h4 mb-2">Made with Love</h3>
-            <p class="text-muted mb-0">
-              Is it really open source if it's not made with love?
-            </p>
-          </div>
-        </div> -->
+
       </div>
     </div>
   </section>
