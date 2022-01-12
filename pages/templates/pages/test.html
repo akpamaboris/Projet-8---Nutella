@@ -1,31 +1,52 @@
 {% extends "pages/base.html" %} {% block content %}
 
-<header class="mt-5">
-  <h1>OK</h1>
-  {% if products|length > 1 %} {% for product in products %}
-  <div class="card" style="width: 18rem">
-    <img class="card-img-top" src="..." alt="Card image cap" />
-    <div class="card-body">
-      <h5 class="card-title">{{product.name_of_product}}</h5>
-      <p class="card-text">{{product.name_of_product}}</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="container-fluid p-5 mb-2 bg-secondary">
+  <h1 class="text-center text-white">{{searchTerm }}</h1>
+</div>
+{% if products|length > 1 %}
+<h2 class="text-center mt-5">Vous pouvez remplacer cet aliment par :</h2>
+{% endif %}
+<div class="container">
+  <div class="row p-5">
+    {% if products|length > 1 %} {% for product in products %}
+    <div class="card m-3" style="width: 18rem">
+      <img
+        class="card-img-top"
+        src="{{product.picture_of_product}}"
+        alt="Card image cap"
+        style="height: 200px; object-fit: contain"
+      />
+      <div class="card-body">
+        <div class="card-title text-center" style="height: 50px">
+          {{product.name_of_product}}
+        </div>
+        <a
+          href="{{product.url_of_product}}"
+          class="btn btn-primary text-center mt-4"
+          style="margin-top: auto; margin-left: auto; display: block"
+          >Voir le produit</a
+        >
+      </div>
     </div>
-  </div>
-  {% endfor %} {% elif product|length_is:"1" %}
+    {% endfor %} {% elif product|length_is:"1" %}
 
-  <h2>{{product.name_of_product}}</h2>
-  <div class="card" style="width: 18rem">
-    <img class="card-img-top" src="..." alt="Card image cap" />
-    <div class="card-body">
-      <h5 class="card-title">{{product.name_of_product}}</h5>
-      <p class="card-text">{{product.name_of_product}}</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+    <h2>{{product.name_of_product}}</h2>
+    <div class="card" style="width: 18rem">
+      <img
+        class="card-img-top"
+        src="{{product.picture_of_product}}"
+        alt="Card image cap"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{product.name_of_product}}</h5>
+        <p class="card-text">{{product.name_of_product}}</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
     </div>
-  </div>
-  {% else %}
-  <h1>I am sorry to let you hear ....</h1>
-  <h2>No products found</h2>
+    {% else %}
+    <h1>I am sorry to let you hear ....</h1>
+    <h2>No products found</h2>
 
-  {% endif %}
-</header>
-{% endblock %}
+    {% endif %} {% endblock %}
+  </div>
+</div>
