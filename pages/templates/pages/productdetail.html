@@ -1,5 +1,7 @@
 {% extends "pages/base.html" %} {% block content %}
-
+<div class="container-fluid p-5 mb-2 bg-secondary">
+  <h1 class="text-center text-white">{{product.name_of_product }}</h1>
+</div>
 <div class="card mb-3">
   <div class="row g-0">
     <div class="col-md-4">
@@ -16,4 +18,12 @@
     </div>
   </div>
 </div>
+<a
+  style="width: 100%; background-color: violet; display: block"
+  href="{{product.url_of_product}}"
+>
+  <button style="width: 100%" type="button" class="btn btn-primary btn-block">
+    Voir la fiche d'OpenFoodFacts
+  </button>
+</a>
 {% endblock content %}
