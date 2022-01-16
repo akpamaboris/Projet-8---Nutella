@@ -1,9 +1,13 @@
 {% extends "pages/base.html" %} {% block content %}
 <div
   class="container-fluid p-5 mb-2 bg-secondary"
-  style="background-image: url({{product.picture_of_product}});"
+  style="background-image: url({{product.picture_of_product}});background-repeat: space repeat;background-size: 10%;
+
+  "
 >
-  <h1 class="text-center text-white">{{product.name_of_product }}</h1>
+  <h1 class="text-center text-white bg-primary">
+    {{product.name_of_product }}
+  </h1>
 </div>
 <div class="container-fluid bg-secondary" style="display: flex">
   <div style="flex-basis: auto; width: 35%; margin-left: auto">
