@@ -76,7 +76,7 @@
 
             {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" href="#services">Mon Compte</a>
+              <a class="nav-link" href="{% url 'account_user' %}">Mon Compte</a>
             </li>
             {% endif %}
             {% if user.is_authenticated %}

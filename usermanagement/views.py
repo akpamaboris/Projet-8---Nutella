@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
-from .forms import LoginForm
+from .forms import LoginForm, UserCreateForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
@@ -25,11 +25,14 @@ def user_login(request):
 
 def signup_user(request):
     if request.method == 'GET':
-        return render(request, 'usermanagement/signup.html', {'form': UserCreationForm})
+        return render(request, 'usermanagement/signup.html', {'form': UserCreateForm})
     else:
         if request.POST['password1'] == request.POST['password2']:
             user = User.objects.create_user(
                 request.POST['username'], password=request.POST['password1'])
+            user.first_name = request.POST['first_name']
+            user.last_name = request.POST['last_name']
+            user.email = request.POST['email']
             user.save()
             login(request, user)
             return redirect('home')
@@ -40,3 +43,7 @@ def signup_user(request):
 def logout_user(request):
     logout(request)
     return redirect('home')
+
+
+def account_user(request):
+    return render(request, 'usermanagement/account.html')
