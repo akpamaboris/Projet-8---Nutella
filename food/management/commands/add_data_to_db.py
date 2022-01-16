@@ -11,7 +11,7 @@ class Command(BaseCommand):
         count = 0
         while count < length:
             nameOfproduct = response.json()[
-                'products'][count]['product_name']
+                'products'][count]['product_name_fr']
 
             pictureOfProduct = response.json()[
                 'products'][count]['image_url']
@@ -22,8 +22,11 @@ class Command(BaseCommand):
             urlOfProduct = response.json()[
                 'products'][count]['url']
 
+            nutriscoreLetter = response.json()[
+                'products'][count]['nutrition_grade_fr']
+
             newProduct = Product(name_of_product=nameOfproduct, picture_of_product=pictureOfProduct,
-                                 nutriscore=nutriscoreOfProduct, url_of_product=urlOfProduct)
+                                 nutriscore=nutriscoreOfProduct, url_of_product=urlOfProduct, nutriscore_letter=nutriscoreLetter)
             newProduct.save()
 
             count += 1

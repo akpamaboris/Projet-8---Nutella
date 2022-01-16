@@ -1,28 +1,25 @@
 {% extends "pages/base.html" %} {% block content %}
-<div class="container-fluid p-5 mb-2 bg-secondary">
+<div
+  class="container-fluid p-5 mb-2 bg-secondary"
+  style="background-image: url({{product.picture_of_product}});"
+>
   <h1 class="text-center text-white">{{product.name_of_product }}</h1>
 </div>
-<div class="card mb-3">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img
-        src="{{product.picture_of_product}}"
-        class="img-fluid rounded-start"
-        alt=""
-      />
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5>{{product.name_of_product}}</h5>
-      </div>
-    </div>
+<div class="container-fluid bg-secondary" style="display: flex">
+  <div style="flex-basis: auto; width: 35%; margin-left: auto">
+    <h3>Nutriscore</h3>
+    <div style="text-transform: uppercase">{{product.nutriscore_letter}}</div>
+  </div>
+  <div style="flex-basis: auto; width: 35%; height: 350px; margin-right: auto">
+    <h3>Repères nutritionnels pour 100g</h3>
   </div>
 </div>
-<a
-  style="width: 100%; background-color: violet; display: block"
-  href="{{product.url_of_product}}"
->
-  <button style="width: 100%" type="button" class="btn btn-primary btn-block">
+<a style="width: 100%; display: flex" href="{{product.url_of_product}}">
+  <button
+    style="width: 50%; margin-right: auto; margin-left: auto"
+    type="button"
+    class="btn btn-primary btn-block"
+  >
     Voir la fiche d'OpenFoodFacts
   </button>
 </a>
