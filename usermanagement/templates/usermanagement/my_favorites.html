@@ -1,0 +1,9 @@
+{% extends 'pages/base.html' %} {% block content %}
+<div class="container-fluid p-5 mb-2 bg-secondary">
+  <h1 class="text-center text-white">Favoris</h1>
+</div>
+{% if favorite|length > 1 %} {% for favorites in favorite %}
+
+<h1>{{ favorites }}</h1>
+
+{% endfor %} {% endif %} {% endblock %}

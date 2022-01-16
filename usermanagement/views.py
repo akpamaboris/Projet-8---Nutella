@@ -6,6 +6,10 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404
+
+
+from food.models import Favorite, Product
 
 # Create your views here.
 
@@ -47,3 +51,20 @@ def logout_user(request):
 
 def account_user(request):
     return render(request, 'usermanagement/account.html')
+
+
+def add_to_favorite(request, product_id):
+    user = request.user
+    product = get_object_or_404(Product, pk=product_id)
+    favorite = Favorite.objects.create(user=user, product=product,
+                                       favorite_object_id=product_id)
+    favorite.save()
+    return render(request, 'usermanagement/add_to_favorite.html', {'user': user, 'product': product})
+
+
+def display_favorites(request):
+    current_user = request.user
+    favorite = Favorite.objects.filter(user=current_user)
+    print('my favvv', favorite)
+    print('my favvv 1', favorite[0])
+    return render(request, 'usermanagement/my_favorites.html', {'favorite': favorite})

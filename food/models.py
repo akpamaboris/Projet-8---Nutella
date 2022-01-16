@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -20,3 +21,15 @@ class Product(models.Model):
 
     class Meta:
         verbose_name_plural: 'Product'
+
+
+class Favorite(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    favorite_object_id = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.product.name_of_product
+
+    class Meta:
+        verbose_name_plural: 'Favorite'
