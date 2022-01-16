@@ -65,6 +65,7 @@ def add_to_favorite(request, product_id):
 def display_favorites(request):
     current_user = request.user
     favorite = Favorite.objects.filter(user=current_user)
+
     print('my favvv', favorite)
-    print('my favvv 1', favorite[0])
+    print('my favvv 1', favorite[0].product.nutriscore_letter)
     return render(request, 'usermanagement/my_favorites.html', {'favorite': favorite})
