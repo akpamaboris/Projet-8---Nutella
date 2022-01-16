@@ -16,16 +16,52 @@
         alt="Card image cap"
         style="height: 200px; object-fit: contain"
       />
+      <div
+        class=""
+        style="
+          background-color: grey;
+          width: 40px;
+          height: 40px;
+          border-radius: 100%;
+          position: absolute;
+          left: 260px;
+          top: -20px;
+          text-align: center;
+        "
+      >
+        <div
+          style="
+            width: 50%;
+            height: 50%;
+            margin-top: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            color: white;
+          "
+        >
+          {{product.nutriscore}}
+        </div>
+      </div>
       <div class="card-body">
         <div class="card-title text-center" style="height: 50px">
           {{product.name_of_product}}
         </div>
-        <a
+        <!-- <a
           href="{{product.url_of_product}}"
           class="btn btn-primary text-center mt-4"
           style="margin-top: auto; margin-left: auto; display: block"
           >Voir le produit</a
+        > -->
+
+        {% if user.is_authenticated %}
+        <a
+          class="btn btn-primary text-center mt-4"
+          style="margin-top: auto; margin-left: auto; display: block"
+          href=""
         >
+          Sauvegarder
+        </a>
+        {% endif %}
       </div>
     </div>
     {% endfor %} {% elif product|length_is:"1" %}
