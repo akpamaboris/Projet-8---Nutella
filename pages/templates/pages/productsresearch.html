@@ -53,7 +53,6 @@
           >Voir le produit</a
         > -->
 
-        {% if user.is_authenticated %}
         <a
           class="btn btn-primary text-center mt-4"
           style="margin-top: auto; margin-left: auto; display: block"
@@ -61,7 +60,14 @@
         >
           Sauvegarder
         </a>
-        {% endif %}
+
+        <a
+          class="btn btn-primary text-center mt-4"
+          style="margin-top: auto; margin-left: auto; display: block"
+          href="{% url 'searchdetail' product.id %}"
+        >
+          Voir le produit
+        </a>
       </div>
     </div>
     {% endfor %} {% elif product|length_is:"1" %}
