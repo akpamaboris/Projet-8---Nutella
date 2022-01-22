@@ -17,6 +17,7 @@ def home(request):
 def searchForProduct(request):
     searchTerm = request.GET.get('searchProduct')
     products = Product.objects.filter(name_of_product__icontains=searchTerm)
+    print('the products', products)
     return render(request, 'pages/productsresearch.html', {'products': products, 'searchTerm': searchTerm})
 
 

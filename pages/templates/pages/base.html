@@ -27,6 +27,9 @@
       rel="stylesheet"
       type="text/css"
     />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+
     <!-- SimpleLightbox plugin CSS-->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css"
@@ -78,14 +81,39 @@
               <a class="nav-link" href="{% url 'viewfavorites' %}">Mes aliments</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#about">Chercher</a>
-            </li>
+              <form action="{% url 'search' %}">
+        <input type="text" placeholder="chercher"/>
+        <button type="submit" class="col"></button>
+      </form>
+              </li>
+          
             <li class="nav-item">
               <a class="nav-link" href="{% url 'logout' %}">Déconnexion</a>
             </li>
             {% else %}
-            <li class="nav-item">
-              <a class="nav-link" href="#about">Chercher</a>
+            <li class="nav-item" >
+
+  <form class="form-inline" action="{% url 'search' %}">
+    <input type="text" style="width:100px" id="email2" placeholder="Enter email" name="email"> 
+    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+  </form>
+
+
+              
+              <!-- <form action="{% url 'search' %}">
+                <input type="text"  type="text"
+                class=" col-9"
+                style="background-color:violet ; margin-bottom:10px"
+                id="chercherproduit"
+                name="searchProduct"
+                 placeholder="chercher" b/>
+                <button type="submit" class="col" style="width:50px; height:30px"></button>
+              </form>            -->
+             </li>
+            <li>
+              <a href="{% url 'account_user' %}">
+                <i class="fas fa-user" style="color:white; margin-left:10px"></i>
+             </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'login' %}">Connexion</a>
@@ -93,7 +121,6 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'signup' %}"">S'enregistrer</a>
             </li>
-
             {% endif %}
            
 
