@@ -82,7 +82,8 @@
             </li>
             <li class="nav-item">
               <form action="{% url 'search' %}">
-        <input type="text" placeholder="chercher"/>
+        <input type="text"  id="chercherproduit"
+        name="searchProduct" placeholder="chercher"/>
         <button type="submit" class="col"></button>
       </form>
               </li>
@@ -94,7 +95,9 @@
             <li class="nav-item" >
 
   <form class="form-inline" action="{% url 'search' %}">
-    <input type="text" style="width:100px" id="email2" placeholder="Enter email" name="email"> 
+    <input type="text" style="width:100px"   id="chercherproduit"
+    name="searchProduct"
+    placeholder="chercher un produit"> 
     <button type="submit" class="btn btn-primary mb-2">Submit</button>
   </form>
 
