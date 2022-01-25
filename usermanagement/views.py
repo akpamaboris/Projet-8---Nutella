@@ -1,3 +1,4 @@
+from cgi import test
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
@@ -56,6 +57,11 @@ def account_user(request):
 def add_to_favorite(request, product_id):
     user = request.user
     product = get_object_or_404(Product, pk=product_id)
+    print('get object', get_object_or_404(Favorite, pk=product_id))
+
+    test_if_here = get_object_or_404(Favorite, pk=product_id)
+    if test_if_here:
+        return render(request, 'usermanagement/already_in_favorite.html')
     favorite = Favorite.objects.create(user=user, product=product,
                                        favorite_object_id=product_id)
     favorite.save()
@@ -65,7 +71,6 @@ def add_to_favorite(request, product_id):
 def display_favorites(request):
     current_user = request.user
     favorite = Favorite.objects.filter(user=current_user)
-
     print('my favvv', favorite)
     print('my favvv 1', favorite[0].product.nutriscore_letter)
     return render(request, 'usermanagement/my_favorites.html', {'favorite': favorite})
