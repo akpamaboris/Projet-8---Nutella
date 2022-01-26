@@ -38,6 +38,8 @@ def signup_user(request):
             user.first_name = request.POST['first_name']
             user.last_name = request.POST['last_name']
             user.email = request.POST['email']
+            user.username = request.POST['username']
+            user.passwordConfirmation = request.POST['passwordConfirmation']
             user.save()
             login(request, user)
             return redirect('home')
