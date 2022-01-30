@@ -29,7 +29,7 @@ class Favorite(models.Model):
     favorite_object_id = models.PositiveIntegerField()
 
     def __str__(self):
-        return self.product.name_of_product
+        return self.product.name_of_product + ' ' + self.user.first_name
 
     class Meta:
         verbose_name_plural: 'Favorite'

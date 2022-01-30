@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
+from django.http import Http404
 
 
 from food.models import Favorite, Product
@@ -39,7 +40,6 @@ def signup_user(request):
             user.last_name = request.POST['last_name']
             user.email = request.POST['email']
             user.username = request.POST['username']
-            user.passwordConfirmation = request.POST['passwordConfirmation']
             user.save()
             login(request, user)
             return redirect('home')
@@ -58,12 +58,27 @@ def account_user(request):
 
 def add_to_favorite(request, product_id):
     user = request.user
+    print('user id ===', request.user.id)
     product = get_object_or_404(Product, pk=product_id)
     print('get object', get_object_or_404(Favorite, pk=product_id))
 
-    test_if_here = get_object_or_404(Favorite, pk=product_id)
-    if test_if_here:
-        return render(request, 'usermanagement/already_in_favorite.html')
+    #test_if_here = get_object_or_404(Favorite, pk=product_id)
+    try:
+        fav_obj_product = Favorite.objects.all()
+    except Favorite.DoesNotExist:
+        raise Http404("No model matches the given query")
+
+    #print('-------------------', vars(fav_obj_product[0]))
+
+    for x in fav_obj_product:
+        print('user is', x.user_id)
+        print('the favorite object is', x.product_id)
+
+        if(x.user_id == request.user.id and x.product_id == product_id):
+            return render(request, 'usermanagement/already_in_favorite.html')
+    #print('current user ===', user)
+    #print('see the product', fav_obj_product)
+    #print('see the user', fav_obj_product.user)
     favorite = Favorite.objects.create(user=user, product=product,
                                        favorite_object_id=product_id)
     favorite.save()
@@ -74,5 +89,5 @@ def display_favorites(request):
     current_user = request.user
     favorite = Favorite.objects.filter(user=current_user)
     print('my favvv', favorite)
-    print('my favvv 1', favorite[0].product.nutriscore_letter)
+    #print('my favvv 1', favorite[0].product.nutriscore_letter)
     return render(request, 'usermanagement/my_favorites.html', {'favorite': favorite})

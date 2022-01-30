@@ -2,16 +2,15 @@
 <div class="container-fluid p-5 mb-2 bg-secondary">
   <h1 class="text-center text-white">Favoris</h1>
 </div>
-{% if favorite|length > 1 %}
+
+{% if favorite %} {% for fav in favorite %}
 
 <div class="container">
   <div class="row p-5">
-    {% for favorites in favorite %}
-
     <div class="card m-3" style="width: 18rem">
       <img
         class="card-img-top"
-        src="{{favorites.product.picture_of_product}}"
+        src="{{fav.product.picture_of_product}}"
         alt="Card image cap"
         style="height: 200px; object-fit: contain"
       />
@@ -38,20 +37,20 @@
             color: white;
           "
         >
-          {{favorites.product.nutriscore}}
+          {{fav.product.nutriscore}}
         </div>
       </div>
       <div class="card-body">
         <div class="card-title text-center" style="height: 50px">
-          {{favorites.product.name_of_product}}
+          {{fav.product.name_of_product}}
         </div>
       </div>
     </div>
-    {% empty %}
-
-    <h1>I am sorry to let you hear ....</h1>
-    <h2>No favorites found</h2>
-    {% endfor %}
   </div>
+</div>
+{% endfor %} {% else %}
+
+<div class="container">
+  <h2>Désolé vous n'avez pas encore de favoris</h2>
 </div>
 {% endif %} {% endblock %}
