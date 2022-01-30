@@ -24,3 +24,11 @@ def searchForProduct(request):
 def searchDetailProduct(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     return render(request, 'pages/productdetail.html', {'product': product})
+
+
+def contactPage(request):
+    return render(request, 'pages/contact.html')
+
+
+def legalMentions(request):
+    return render(request, 'pages/legalmentions.html')
