@@ -2,12 +2,11 @@
 <div class="container-fluid p-5 mb-2 bg-secondary">
   <h1 class="text-center text-white">Favoris</h1>
 </div>
-
-{% if favorite %} {% for fav in favorite %}
-
 <div class="container">
   <div class="row p-5">
-    <div class="card m-3" style="width: 18rem">
+    {% if favorite %} {% for fav in favorite %}
+
+    <div class="card md-6" style="width: 25rem; margin-right: 5px">
       <img
         class="card-img-top"
         src="{{fav.product.picture_of_product}}"
@@ -46,11 +45,11 @@
         </div>
       </div>
     </div>
+    {% endfor %} {% else %}
+
+    <h2>Désolé vous n'avez pas encore de favoris</h2>
+    {% endif %}
   </div>
 </div>
-{% endfor %} {% else %}
 
-<div class="container">
-  <h2>Désolé vous n'avez pas encore de favoris</h2>
-</div>
-{% endif %} {% endblock %}
+{% endblock %}
