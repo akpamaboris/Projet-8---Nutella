@@ -64,9 +64,9 @@ def account_user(request):
 
 def add_to_favorite(request, product_id):
     user = request.user
-    print('user id ===', request.user.id)
+    #print('user id ===', request.user.id)
     product = get_object_or_404(Product, pk=product_id)
-    print('get object', get_object_or_404(Favorite, pk=product_id))
+    #print('get object', get_object_or_404(Favorite, pk=product_id))
 
     #test_if_here = get_object_or_404(Favorite, pk=product_id)
     try:
@@ -77,8 +77,8 @@ def add_to_favorite(request, product_id):
     #print('-------------------', vars(fav_obj_product[0]))
 
     for x in fav_obj_product:
-        print('user is', x.user_id)
-        print('the favorite object is', x.product_id)
+        #print('user is', x.user_id)
+        #print('the favorite object is', x.product_id)
 
         if(x.user_id == request.user.id and x.product_id == product_id):
             return render(request, 'usermanagement/already_in_favorite.html')
