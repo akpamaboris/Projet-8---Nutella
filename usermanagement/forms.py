@@ -17,5 +17,19 @@ class UserCreateForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name',
-                  'email', 'password1', 'password2')
+        fields = ['username', 'first_name', 'last_name',
+                  'email', 'password1', 'password2']
+
+    def clean(self):
+
+        # data from the form is fetched using super function
+        super(UserCreateForm, self).clean()
+
+        # extract the username and text field from the data
+        password = self.cleaned_data['password1']
+
+        if len(password) < 5:
+            self.errors['password'] = self.error_class(
+                ['Minimum 5 characters required'])
+
+        return self.cleaned_data

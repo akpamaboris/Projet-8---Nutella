@@ -33,18 +33,24 @@ def signup_user(request):
     if request.method == 'GET':
         return render(request, 'usermanagement/signup.html', {'form': UserCreateForm})
     else:
-        if request.POST['password1'] == request.POST['password2']:
-            user = User.objects.create_user(
-                request.POST['username'], password=request.POST['password1'])
-            user.first_name = request.POST['first_name']
-            user.last_name = request.POST['last_name']
-            user.email = request.POST['email']
-            user.username = request.POST['username']
-            user.save()
-            login(request, user)
-            return redirect('home')
+        details = UserCreateForm(request.POST)
+        if details.is_valid():
+            if request.POST['password1'] == request.POST['password2']:
+                user = User.objects.create_user(
+                    request.POST['username'], password=request.POST['password1'])
+                user.first_name = request.POST['first_name']
+                user.last_name = request.POST['last_name']
+                user.email = request.POST['email']
+                user.username = request.POST['username']
+                user.save()
+                login(request, user)
+                return redirect('home')
+            else:
+                return render(request, 'usermanagement/signup.html', {'form': UserCreateForm, 'error': 'Passwords do not match'})
         else:
-            return render(request, 'usermanagement/signup.html', {'form': UserCreationForm, 'error': 'Passwords do not match'})
+            form = UserCreateForm(None)
+            print('errooor', details.errors)
+            return render(request, 'usermanagement/signup.html', {'form': form, 'errors': details.errors})
 
 
 def logout_user(request):

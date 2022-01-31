@@ -59,4 +59,11 @@
   </div>
 </header>
 
-{% endblock %}
+{% if errors %}
+<div
+  class=".container-md"
+  style="width: 50%; padding: 30px; margin-left: auto; margin-right: auto"
+>
+  <div style="color: red">{{ errors }}</div>
+</div>
+{% endif %} {% endblock %}
