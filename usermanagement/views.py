@@ -23,7 +23,7 @@ def user_login(request):
         user = authenticate(
             request, username=request.POST['username'], password=request.POST['password'])
         if user is None:
-            return render(request, 'loginaccount.html', {'form': AuthenticationForm(), 'error': 'username and password do not match'})
+            return render(request, 'usermanagement/login.html', {'form': AuthenticationForm(), 'error': 'username and password do not match or the username does not exist'})
         else:
             login(request, user)
             return redirect('home')

@@ -3,14 +3,7 @@
 <header class="masthead">
   <div class="container px-4 px-lg-5 h-100">
     <div
-      class="
-        row
-        gx-4 gx-lg-5
-        h-100
-        align-items-center
-        justify-content-center
-        text-center
-      "
+      class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center"
     >
       <h1>Se connecter</h1>
       <form method="post">
@@ -18,6 +11,15 @@
         <input type="submit" value="Log In" />
       </form>
     </div>
+    {% if error %}
+    <div
+      class=".container-md"
+      style="width: 50%; padding: 30px; margin-left: auto; margin-right: auto"
+    >
+      <div style="color: red">{{ error }}</div>
+    </div>
+
+    {% endif %}
   </div>
 </header>
 
