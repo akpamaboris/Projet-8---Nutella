@@ -54,6 +54,7 @@
           >Voir le produit</a
         > -->
         <form action="{% url 'add_to_favorite' product.id %}">
+          {% if user.is_authenticated %}
           <button
             class="btn btn-primary text-center mt-4"
             style="
@@ -65,6 +66,7 @@
           >
             Sauvegarder
           </button>
+          {% endif %}
         </form>
         <a
           class="btn btn-primary text-center mt-4"
