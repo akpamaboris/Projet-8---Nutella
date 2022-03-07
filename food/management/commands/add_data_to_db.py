@@ -19,6 +19,14 @@ class Command(BaseCommand):
             nutriscoreOfProduct = str(response.json()[
                 'products'][count]['nutriscore_score'])
 
+            energyOfProduct = response.json(
+            )['products'][count]['nutriments']['energy_100g']
+            fatOfProduct = response.json(
+            )['products'][count]['nutriments']['fat_100g']
+            proteinsOfProduct = response.json(
+            )['products'][count]['nutriments']['proteins_100g']
+            sugarOfProduct = response.json(
+            )['products'][count]['nutriments']['sugars_100g']
             urlOfProduct = response.json()[
                 'products'][count]['url']
 
@@ -26,7 +34,8 @@ class Command(BaseCommand):
                 'products'][count]['nutrition_grade_fr']
 
             newProduct = Product(name_of_product=nameOfproduct, picture_of_product=pictureOfProduct,
-                                 nutriscore=nutriscoreOfProduct, url_of_product=urlOfProduct, nutriscore_letter=nutriscoreLetter)
+                                 nutriscore=nutriscoreOfProduct, url_of_product=urlOfProduct, nutriscore_letter=nutriscoreLetter,
+                                 energy_product=energyOfProduct, fat_product=fatOfProduct, proteins_product=proteinsOfProduct, sugar_product=sugarOfProduct)
             newProduct.save()
 
             count += 1

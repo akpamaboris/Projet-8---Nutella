@@ -15,6 +15,14 @@ class Product(models.Model):
         max_length=500, default=None, blank=True, null=True)
     nutriscore_letter = models.CharField(
         max_length=10, default=None, blank=True, null=True)
+    energy_product = models.CharField(
+        max_length=500, default=None, blank=True, null=True)
+    fat_product = models.CharField(
+        max_length=500, default=None, blank=True, null=True)
+    proteins_product = models.CharField(
+        max_length=500, default=None, blank=True, null=True)
+    sugar_product = models.CharField(
+        max_length=500, default=None, blank=True, null=True)
 
     def __str__(self):
         return self.name_of_product
