@@ -47,12 +47,7 @@
         <div class="card-title text-center" style="height: 50px">
           {{product.name_of_product}}
         </div>
-        <!-- <a
-          href="{{product.url_of_product}}"
-          class="btn btn-primary text-center mt-4"
-          style="margin-top: auto; margin-left: auto; display: block"
-          >Voir le produit</a
-        > -->
+
         <form action="{% url 'add_to_favorite' product.id %}">
           {% if user.is_authenticated %}
           <button

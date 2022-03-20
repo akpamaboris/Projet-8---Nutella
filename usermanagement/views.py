@@ -11,21 +11,39 @@ from django.shortcuts import get_object_or_404
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
+from django.contrib.auth import get_user_model
 
 
 from food.models import Favorite, Product
 
-# Create your views here.
+# Create your views here
+
+
+def authenticate_user(email, password):
+    try:
+        user = User.objects.get(email=email)
+    except User.DoesNotExist:
+        return None
+    else:
+        if user.check_password(password):
+            return user
+
+    return None
 
 
 def user_login(request):
     if request.method == 'GET':
-        return render(request, 'usermanagement/login.html', {'form': AuthenticationForm})
+        return render(request, 'usermanagement/login.html', {'form': LoginForm})
     else:
-        user = authenticate(
-            request, username=request.POST['username'], password=request.POST['password'])
-        if user is None:
-            return render(request, 'usermanagement/login.html', {'form': AuthenticationForm(), 'error': 'username and password do not match or the username does not exist'})
+        print('request POST', request.POST)
+        email = request.POST['email']
+        password = request.POST['password']
+        user = authenticate_user(email, password)
+        print('user =', user)
+        user_authentication = authenticate(
+            username=user, password=password)
+        if user_authentication is None:
+            return render(request, 'usermanagement/login.html', {'form': LoginForm(), 'error': 'email and password do not match or the email does not exist'})
         else:
             login(request, user)
             return redirect('home')
