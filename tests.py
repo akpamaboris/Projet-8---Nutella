@@ -7,7 +7,7 @@ import unittest
 
 class HomePageTest(LiveServerTestCase):
     def testdescription(self):
-        selenium = webdriver.Chrome(executable_path="C:\\chromedriver.exe")
+        selenium = webdriver.Chrome(executable_path="./chromedriver")
         # Choose your url to visit
         selenium.get('http://127.0.0.1:8000/')
         assert 'Remy' in selenium.page_source
@@ -16,7 +16,7 @@ class HomePageTest(LiveServerTestCase):
 
 class ConnexionPageTest(LiveServerTestCase):
     def testConnexion(self):
-        selenium = webdriver.Chrome(executable_path="C:\chromedriver.exe")
+        selenium = webdriver.Chrome(executable_path="./chromedriver")
         selenium.get('http://127.0.0.1:8000/accountslogin')
         assert 'Se connecter' in selenium.page_source
         selenium.close()
@@ -24,7 +24,7 @@ class ConnexionPageTest(LiveServerTestCase):
 
 class RegisterPageTest(LiveServerTestCase):
     def testConnexion(self):
-        selenium = webdriver.Chrome(executable_path="C:\chromedriver.exe")
+        selenium = webdriver.Chrome(executable_path="./chromedriver")
         selenium.get('http://127.0.0.1:8000/accountssignup')
         assert "S'enregistrer" in selenium.page_source
         selenium.close()
@@ -32,7 +32,7 @@ class RegisterPageTest(LiveServerTestCase):
 
 class ContactPageTest(LiveServerTestCase):
     def testConnexion(self):
-        selenium = webdriver.Chrome(executable_path="C:\chromedriver.exe")
+        selenium = webdriver.Chrome(executable_path="./chromedriver")
         selenium.get('http://127.0.0.1:8000/contactpage')
         assert "Contactez" in selenium.page_source
         selenium.close()
