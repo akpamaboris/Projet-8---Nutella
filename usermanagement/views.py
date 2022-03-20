@@ -9,6 +9,8 @@ from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
 from django.http import Http404
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
 
 
 from food.models import Favorite, Product
@@ -92,8 +94,12 @@ def add_to_favorite(request, product_id):
 
 
 def display_favorites(request):
-    current_user = request.user
-    favorite = Favorite.objects.filter(user=current_user)
-    print('my favvv', favorite)
-    #print('my favvv 1', favorite[0].product.nutriscore_letter)
-    return render(request, 'usermanagement/my_favorites.html', {'favorite': favorite})
+    if request.user.is_authenticated:
+        current_user = request.user
+        favorite = Favorite.objects.filter(user=current_user)
+        print('my favvv', favorite)
+        #print('my favvv 1', favorite[0].product.nutriscore_letter)
+        return render(request, 'usermanagement/my_favorites.html', {'favorite': favorite})
+
+    else:
+        return redirect('home')
